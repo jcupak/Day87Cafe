@@ -1,0 +1,86 @@
+{% extends 'bootstrap/base.html' %}
+
+{% block styles %}
+{{ super() }}
+<link rel="stylesheet" type="text/css"
+      href="{{ url_for('static', filename='css/cafe_styles.css') }}">
+{% endblock %}
+
+{% block title %}All Cafes{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+
+            <h1 class="display-4">All Cafes</h1>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <!-- Ignore id -->
+                        <th>Name</th>
+                        <th>Map</th>
+                        <th>Image</th>
+                        <th>Location</th>
+                        <th>Power</br>Outlets</th>
+                        <th>Public<br>Toilet</th>
+                        <th>Wifi</th>
+                        <th>Accepts</br>Calls</th>
+                        <th>Seats</th>
+                        <th>Coffee</br>Price</th>
+                    </tr>
+                </thead>
+                {% for cafe in cafes %}
+                <tr>
+                    <th>{{cafe.name}}</th>
+                    <td>
+                        <a href="{{cafe.map_url}}" title="Open map link in new window" target="blank">Map</a>
+                    </td>
+                    <td>
+                        <a href="{{cafe.img_url}}" title="Open cafe image in new window" target="_blank">Image</a>
+                    </td>
+                    <td>{{cafe.location}}</td>
+                    <td>{% if cafe.has_sockets %}
+                            Yes
+                        {% else %}
+                            No
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if cafe.has_toilet %}
+                             Yes
+                        {% else %}
+                            No
+                        {% endif %}
+                   </td>
+                    <td>
+                        {% if cafe.has_wifi %}
+                            Yes
+                        {% else %}
+                            No
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if cafe.can_take_calls %}
+                            Yes
+                        {% else %}
+                            No
+                        {% endif %}
+                    </td>
+                    <td>{{cafe.seats}}</td>
+                    <td>{{cafe.coffee_price}}</td>
+                </tr>
+                {% endfor %}
+            </table>
+
+            <a class="btn btn-warning btn-lg" role="button"
+               href="{{ url_for('home') }}">Return to Home page</a>
+
+            <a class="btn btn-warning btn-lg" role="button"
+               href="{{ url_for('add') }}">Add a New Cafe</a>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

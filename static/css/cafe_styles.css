@@ -1,0 +1,17 @@
+/* Override some Bootstrap styles */
+.jumbotron, body, a {
+    background-color: #6f4e37;  /* Coffee color */
+    color: #fff2d7;             /* Coffee Cream color */
+}
+a {
+    color: #fff2d7;             /* Coffee Cream color */
+    text_decoration: underline; /* Show as link */
+}
+a:link {
+    color: #fff2d7;             /* Coffee Cream color */
+}
+.jumbotron {
+    display: flex;
+    align-items: center;
+    height: 100vh;
+}
