@@ -1,0 +1,43 @@
+{% extends 'bootstrap/base.html' %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block styles %}
+{{ super() }}
+<link rel="stylesheet" type="text/css"
+      href="{{ url_for('static', filename='css/cafe_styles.css') }}">
+<style type="text/css">
+    .has-error .control-label,
+    .has-error .help-block {
+        background-color: #6f4e37;  /* Coffee color */
+        color: #fff2d7;             /* Coffee Cream color */
+        }
+</style>
+{% endblock %}
+
+{% block title %}Add New Cafe{% endblock %}
+
+{% block content %}
+<div class="container">
+
+    <div class="row">
+
+        <div class="col-sm-we col-md-8">
+            <h1 class="display-4">Add a New Cafe</h1>
+
+            {{ wtf.quick_form(form, novalidate=True) }}
+
+        </div>
+
+    </div>
+
+    <br />
+    <p class="my-4">
+        <a class="btn btn-warning btn-lg" role="button"
+               href="{{ url_for('cafes') }}">See all cafes</a>
+    </p>
+
+</div>
+
+
+
+{% endblock %}
